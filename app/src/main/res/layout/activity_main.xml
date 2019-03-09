@@ -21,6 +21,21 @@
             android:id="@+id/circleImage" android:text="Search \n Stargazers"
             android:elegantTextHeight="true" android:textColor="@android:color/white"/>
 
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            app:layout_constraintTop_toBottomOf="@+id/circleImage"
+            android:id="@+id/Username_editText"
+            android:hint="Owner"
+            android:paddingLeft="16dp"
+            android:background="@drawable/rounded"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="32dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="112dp"/>
+
 
     <EditText
 
@@ -31,35 +46,22 @@
             android:ems="10"
             android:paddingLeft="16dp"
             android:background="@drawable/rounded"
-
-            android:id="@+id/RepositoryName_editText" android:layout_marginTop="96dp"
+            app:layout_constraintTop_toBottomOf="@+id/Username_editText"
+            android:id="@+id/RepositoryName_editText" android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintTop_toBottomOf="@+id/circleImage"/>
+    />
 
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            app:layout_constraintTop_toBottomOf="@+id/RepositoryName_editText"
-            android:id="@+id/Username_editText"
-            android:hint="Owner"
-            android:paddingLeft="16dp"
-            android:background="@drawable/rounded"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="32dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="20dp"/>
 
 
     <Button
             android:text="Search"
             android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/RepositoryName_editText"
             android:layout_height="50dp"
             android:id="@+id/SearchButton"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/Username_editText"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

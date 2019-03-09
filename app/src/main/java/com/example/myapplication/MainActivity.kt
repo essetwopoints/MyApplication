@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRepositoryName(): String {
         val nameRepository = RepositoryName_editText.text.toString()
-        Log.d("MainActivity", "UserName is + $nameRepository")
+        Log.d("MainActivity", "Repository Name is + $nameRepository")
         return nameRepository
 
     }

@@ -1,30 +1,20 @@
 package com.example.myapplication
 
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.SystemClock
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
-import android.view.WindowManager
-import android.widget.Toast
 import kotlinx.android.synthetic.main.git_activity.*
 import okhttp3.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
-import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.uiThread
 import java.io.IOException
-import java.util.*
+
 
 
 class GitActivity: AppCompatActivity() {
@@ -71,10 +61,6 @@ class GitActivity: AppCompatActivity() {
                             dialogPopUp("Error parameters", mContext).showDialog()
 
                         }
-
-                        val intent = Intent(mContext, MainActivity::class.java)
-                        startActivity(intent)
-
 
 
                     } else if (code == 200) {
