@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         SearchButton.setOnClickListener {
 
             when {
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun getUsername(): String {
 
