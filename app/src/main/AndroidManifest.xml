@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".GitActivity" >
+        <activity android:name=".GitActivity" android:parentActivityName=".MainActivity" >
 
         </activity>
     </application>

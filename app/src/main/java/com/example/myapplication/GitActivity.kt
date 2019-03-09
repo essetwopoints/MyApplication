@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import kotlinx.android.synthetic.main.git_activity.*
 import okhttp3.*
 import org.jetbrains.anko.doAsync
@@ -32,15 +33,28 @@ class GitActivity: AppCompatActivity() {
         mContext = this@GitActivity
 
          var toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitle("List of Stargazers")
-        toolbar.setTitleTextColor(Color.WHITE)
+        toolbar.title = "List of Stargazers"
+         toolbar.setTitleTextColor(Color.WHITE)
+         setSupportActionBar(toolbar)
+
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
 
 
       doAsync {
-            fetchJson(url)
-            uiThread { longToast("Connecting to Server..") }
+          fetchJson(url)
+          uiThread { longToast("Connecting to Server..") }
+      }
+
+        @Override
+        fun  onSupportNavigateUp(): Boolean {
+            onBackPressed()
+            return true
         }
+
+
     }
 
 
@@ -67,11 +81,25 @@ class GitActivity: AppCompatActivity() {
 
                         val namefilelist = ProcessGson().processGson(response.body()?.string()!!)
 
+                        Log.d("MainActivity", "UserName is + $namefilelist")
+
+                        print(namefilelist.size)
+
+                        if (namefilelist.size == 0) {
+
+                            runOnUiThread {
+
+                                dialogPopUp("Stargazers not present", mContext).showDialog()
+
+                            }
+
+                        } else {
 
                             runOnUiThread {
                                 Recycle_view.adapter = MainAdapter(namefilelist)
                             }
                         }
+                    }
 
                 }
                 override fun onFailure(call: Call, e: IOException) {
