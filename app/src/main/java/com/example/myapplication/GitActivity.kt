@@ -13,7 +13,6 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.git_activity.*
 import okhttp3.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 import java.io.IOException
 
@@ -72,7 +71,7 @@ class GitActivity: AppCompatActivity() {
 
                         runOnUiThread {
 
-                            dialogPopUp("Please verify the owner and repository name", mContext).showDialog()
+                            dialogPopUp("Please check if username and repository are correct and try again", mContext).showDialog()
 
                         }
 
