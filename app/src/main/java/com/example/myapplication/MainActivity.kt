@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -16,16 +17,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        retriveData()
 
         SearchButton.setOnClickListener {
 
             when {
-                getUsername() == "" -> AlertDialog.Builder(this).setTitle("No Owner")
+                getUsername() == "" -> AlertDialog.Builder(this,  R.style.AlertDialogCustom).setTitle("Invalid Owner")
                     .setMessage("Please Insert Owner")
                     .setPositiveButton(android.R.string.ok) { _, _ -> }
                     .setIcon(android.R.drawable.ic_dialog_alert).show()
-                getRepositoryName() == "" -> AlertDialog.Builder(this).setTitle("No Repository Name")
+                getRepositoryName() == "" -> AlertDialog.Builder(this,  R.style.AlertDialogCustom).setTitle("Invalid Repository Name")
                     .setMessage("Please Insert Repository Name")
                     .setPositiveButton(android.R.string.ok) { _, _ -> }
                     .setIcon(android.R.drawable.ic_dialog_alert).show()
@@ -43,6 +44,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun retriveData(){
+
+        val myPreference = getSharedPreferences("preferenceRepository", Context.MODE_PRIVATE)
+        val username = myPreference.getString("username", "")
+        val repository = myPreference.getString("repository", "")
+
+        RepositoryName_editText.setText(repository)
+        Username_editText.setText(username)
+
+
+
+
+    }
+
     private fun getRepositoryName(): String {
         val nameRepository = RepositoryName_editText.text.toString()
         Log.d("MainActivity", "Repository Name is + $nameRepository")
@@ -54,6 +69,14 @@ class MainActivity : AppCompatActivity() {
     {
         if(isConnected(this)){
 
+            val myPreference = getSharedPreferences("preferenceRepository", Context.MODE_PRIVATE)
+            val editor = myPreference.edit()
+
+            editor.putString("username", getUsername().toLowerCase() )
+            editor.putString("repository", getRepositoryName().toLowerCase() )
+            editor.apply()
+
+
             val url = CreateUrl().createUrl(getUsername().toLowerCase(), getRepositoryName().toLowerCase())
             var intent = Intent(this, GitActivity::class.java)
             intent.putExtra("URL", url)
@@ -61,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         else {
-            AlertDialog.Builder(this).setTitle("No Internet Connection")
+            AlertDialog.Builder(this, R.style.AlertDialogCustom).setTitle("No Internet Connection")
                 .setMessage("Please check your internet connection and try again")
                 .setPositiveButton(android.R.string.ok) { _, _ -> }
                 .setIcon(android.R.drawable.ic_dialog_alert).show()

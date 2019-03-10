@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.git_activity.*
 import okhttp3.*
 import org.jetbrains.anko.doAsync
@@ -45,7 +46,7 @@ class GitActivity: AppCompatActivity() {
 
       doAsync {
           fetchJson(url)
-          uiThread { longToast("Connecting to Server..") }
+          uiThread { Toast.makeText(mContext,"Connecting to Server..", Toast.LENGTH_SHORT).show() }
       }
 
         @Override
@@ -56,7 +57,6 @@ class GitActivity: AppCompatActivity() {
 
 
     }
-
 
     fun fetchJson(url: String) {
 
@@ -72,7 +72,7 @@ class GitActivity: AppCompatActivity() {
 
                         runOnUiThread {
 
-                            dialogPopUp("Error parameters", mContext).showDialog()
+                            dialogPopUp("Please verify the owner and repository name", mContext).showDialog()
 
                         }
 
@@ -89,7 +89,7 @@ class GitActivity: AppCompatActivity() {
 
                             runOnUiThread {
 
-                                dialogPopUp("Stargazers not present", mContext).showDialog()
+                                dialogPopUp("Nessuno stargazers presente", mContext).showDialog()
 
                             }
 

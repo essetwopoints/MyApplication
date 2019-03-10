@@ -32,6 +32,8 @@ class MainAdapter(val namefilelist: ArrayList<StargazersData>): RecyclerView.Ada
         print(stargazersInfo.avatar_url)
         Picasso.with(holder?.view?.context).load(stargazersInfo.avatar_url).into(avatarImageView)
     }
+
+
 }
 
 class CustomViewHolder(val view: View) : RecyclerView.ViewHolder(view)
