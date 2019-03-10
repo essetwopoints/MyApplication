@@ -8,13 +8,20 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import android.R.id.edit
+import android.content.SharedPreferences
+
+
 
 
 class MainActivity : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         retriveData()
 
@@ -32,7 +39,26 @@ class MainActivity : AppCompatActivity() {
                 else -> verifyNetwork()
             }
         }
+
+
+        }
+
+    public override fun onResume() {
+        super.onResume()
+
+        val myPreference = getSharedPreferences("preferenceRepository", Context.MODE_PRIVATE)
+
+        if (myPreference.getBoolean("firstrun", true)) {
+
+            clearPrefs()
+
+            myPreference.edit().putBoolean("firstrun", false).commit()
+        }
+
+
     }
+
+
 
 
     private fun getUsername(): String {
@@ -52,10 +78,21 @@ class MainActivity : AppCompatActivity() {
         RepositoryName_editText.setText(repository)
         Username_editText.setText(username)
 
-
-
-
     }
+
+    private fun clearPrefs() {
+
+        val myPreference = getSharedPreferences("preferenceRepository", Context.MODE_PRIVATE)
+        val editor = myPreference.edit()
+
+        editor.putString("username", "" )
+        editor.putString("repository", "" )
+        editor.clear().commit()
+
+        RepositoryName_editText.setText("")
+        Username_editText.setText("")
+    }
+
 
     private fun getRepositoryName(): String {
         val nameRepository = RepositoryName_editText.text.toString()

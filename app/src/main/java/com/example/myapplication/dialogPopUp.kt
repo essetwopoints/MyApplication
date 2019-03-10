@@ -31,9 +31,7 @@ class dialogPopUp(textPass: String, context: Context) {
 
            dialog.cancel()
 
-
         }
-
         dialog.show()
 
     }

@@ -14,7 +14,6 @@ class ProcessGson {
         for(k in namefilelist){
 
           listAvatar.add(StargazersDataCreate().stargazersDataCreate(k.login,k.avatar_url))
-            
 
         }
         return listAvatar

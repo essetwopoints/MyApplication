@@ -24,7 +24,7 @@
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">#ff0099cc</item>
         <item name="android:textColor">#ff0099cc</item>
-        <item name="android:textColorPrimary">#ff0099cc</item>
+        <item name="android:textColorPrimary">#f000</item>
     </style>
 
 

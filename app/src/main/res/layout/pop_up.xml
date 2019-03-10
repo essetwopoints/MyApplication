@@ -9,15 +9,16 @@
 
     <TextView
             android:id="@+id/textPopUp"
-            android:layout_width="263dp"
-            android:layout_height="64dp"
+            android:layout_width="315dp"
+            android:layout_height="73dp"
 
             android:layout_marginTop="24dp"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:textColor="@android:color/holo_blue_dark"/>
+            app:layout_constraintTop_toTopOf="parent" android:textColor="@android:color/black"
+            android:textSize="18sp"/>
     <Button
             android:text="Ok"
             android:layout_width="86dp"
