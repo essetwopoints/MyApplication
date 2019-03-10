@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.git_activity.*
 import okhttp3.*
@@ -33,9 +32,11 @@ class GitActivity: AppCompatActivity() {
         mContext = this@GitActivity
 
          var toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = "List of Stargazers"
+         toolbar.title = "List of Stargazers"
          toolbar.setTitleTextColor(Color.WHITE)
          setSupportActionBar(toolbar)
+
+        Recycle_view.adapter = MainAdapter(ArrayList())
 
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -53,8 +54,6 @@ class GitActivity: AppCompatActivity() {
             onBackPressed()
             return true
         }
-
-
     }
 
     fun fetchJson(url: String) {
@@ -72,17 +71,12 @@ class GitActivity: AppCompatActivity() {
                         runOnUiThread {
 
                             dialogPopUp("Please check if username and repository are correct and try again", mContext).showDialog()
-
                         }
-
 
                     } else if (code == 200) {
 
                         val namefilelist = ProcessGson().processGson(response.body()?.string()!!)
 
-                        Log.d("MainActivity", "UserName is + $namefilelist")
-
-                        print(namefilelist.size)
 
                         if (namefilelist.size == 0) {
 
