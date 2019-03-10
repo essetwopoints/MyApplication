@@ -25,8 +25,6 @@ class GitActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.git_activity)
         val recycleView = findViewById<RecyclerView>(R.id.Recycle_view)
-
-
         recycleView.layoutManager = LinearLayoutManager(this)
         var url = intent.getStringExtra("URL")
         mContext = this@GitActivity
