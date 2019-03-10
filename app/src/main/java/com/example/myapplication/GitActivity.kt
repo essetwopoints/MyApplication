@@ -86,6 +86,7 @@ class GitActivity: AppCompatActivity() {
                 } else if (code == 200) {
 
                     val namefilelist = ProcessGson().processGson(response.body()?.string()!!)
+
                     if (namefilelist.size == 0) {
 
                     } else {
