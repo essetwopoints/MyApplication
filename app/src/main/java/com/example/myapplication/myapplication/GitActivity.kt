@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 
 package com.example.myapplication
 
@@ -88,6 +87,13 @@ class GitActivity: AppCompatActivity() {
                     val namefilelist = ProcessGson().processGson(response.body()?.string()!!)
 
                     if (namefilelist.size == 0) {
+                        
+                         runOnUiThread {
+                        dialogPopUp(
+                            "No Stargazers",
+                            mContext
+                        ).showDialog()
+                    }
 
                     } else {
 
